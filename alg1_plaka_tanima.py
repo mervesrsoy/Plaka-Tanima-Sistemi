@@ -3,8 +3,8 @@ import cv2  # OpenCV bilgisayarla görü, makine öğrenimi, görüntü işleme 
 import numpy as np  # Numerical Python, yüksek performanslı sayısal işlemler yapmak için kullanılan bir Python kütüphanesidir.
 import matplotlib.pyplot as plt # Veri görselleştirmesinde kullandığımız temel python kütüphanesidir.
 
-"""
 
+"""
 #                  **RESMİ OKUMA, GRİ TONLARINA ÇEVİRME**
 
 resim_adres = os.listdir("/Users/miracbaysal/Desktop/AracProje/Photos/")
@@ -123,6 +123,7 @@ for c in cnt:
 """
 
 def plaka_konum_don(img):
+
     img_bgr = img
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)    # BGR'dan Gray'e
 
@@ -196,12 +197,13 @@ def plaka_konum_don(img):
                 # img değişkenimizin çizdireceğimiz contourlarını belirttik(box). Sonrasında contourların köşegenlerden çizileceğini belirtmek için 0 değerini giriyoruz.
                 # sonrasında bgr renk değerlerimizi giriyoruz. çizdirdiğimiz kısmın yeşil olmasını istediğimiz için yeşil kısmı 255 olarak ayarladık. Son adımda ise pixel kalınlığı yazıyoruz.
                 
-                plaka = [int(i) for i in [minx, miny, w, h]]
+                plaka = [int(i) for i in [minx, miny, w, h]]    #x, y, w, h
 
                 kontrol = True
             else:
                 #plaka değildir
-                cv2.drawContours(img, [box], 0, (0,0,255), 2)
+                # cv2.drawContours(img, [box], 0, (0,0,255), 0)
+                continue
 
             if(kontrol):
                 return plaka

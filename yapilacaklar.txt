@@ -1,11 +1,20 @@
+** Plaka tanıma, Koordinat bulma **
+
 1- Dikdörtgenleri yakalayacağız.
-
 2- yükseklik ve genişlik değerleri arasında 2,3,4 kat fark olucak
-
 3- Renk değerleri gri tonlarında olucak 84<renk<200 (yoğunluk)
-
 4- Fotoğrafı 500e 500 boyutlandırdığımızda;
-H değeri < 50
-W değeri < 150 
-
+    H değeri < 50
+    W değeri < 150 
 5- Yakaladığımız dikdörtgen içerisinde harfler ve rakamlar olucak.
+
+
+** Sınıflandırma, Karakter tanıma **
+
+1-Segmentation: Ayrıştırma
+    1.1 -> Eşikleme    (Beyaz renkleri dikkate almadan sadece siyah olanları ayıracağız.)
+    1.2 -> Karakter genişliği (w) ~< Plaka resminin genişliği(W)/8  8 de 1'i yaklaşık
+    1.3 -> Karakterlerin kapladığı alan hemen hemen aynı, alan > 200
+
+2-Classification: Sınıflandırma
+Evrişimsel Sinir Ağı (CNN)
