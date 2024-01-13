@@ -1,0 +1,11 @@
+1- Dikdörtgenleri yakalayacağız.
+
+2- yükseklik ve genişlik değerleri arasında 2,3,4 kat fark olucak
+
+3- Renk değerleri gri tonlarında olucak 100<renk<200
+
+4- Fotoğrafı 500e 500 boyutlandırdığımızda;
+H değeri < 50
+W değeri < 150 
+
+5- Yakaladığımız dikdörtgen içerisinde harfler ve rakamlar olucak.
