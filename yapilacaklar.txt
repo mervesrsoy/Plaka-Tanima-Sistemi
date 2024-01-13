@@ -2,7 +2,7 @@
 
 2- yükseklik ve genişlik değerleri arasında 2,3,4 kat fark olucak
 
-3- Renk değerleri gri tonlarında olucak 100<renk<200
+3- Renk değerleri gri tonlarında olucak 84<renk<200 (yoğunluk)
 
 4- Fotoğrafı 500e 500 boyutlandırdığımızda;
 H değeri < 50
