@@ -11,6 +11,9 @@ isim = veriler[1]
 img = cv2.imread("Photos/" + isim)
 img = cv2.resize(img, (500, 500))
 
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.show()
+
 plaka = plaka_konum_don(img)
 x, y, w, h = plaka
 

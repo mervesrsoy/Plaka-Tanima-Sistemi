@@ -123,9 +123,17 @@ for c in cnt:
 """
 
 def plaka_konum_don(img):
+    
+    plt.title("Araç resmi")
+    plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))    # Resmin renklerini BGR'dan RGB'ye convert ettik.
+    plt.show()
 
     img_bgr = img
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)    # BGR'dan Gray'e
+
+    plt.title("Gri format")
+    plt.imshow(img_gray, cmap="gray")   # cmap = color_map kısaltması
+    plt.show()
 
 
     #                   **GÜRÜLTÜ GİDERME, KENARLIK TESPİTİ**
@@ -133,6 +141,11 @@ def plaka_konum_don(img):
 
     ir_img = cv2.medianBlur(img_gray, 5) # ir = işlem resmi,    burada verdiğimiz 5 değeri resmi filtreleyeceğimiz değer. 5e5 boyutlandırarak işlem sürecek.
     ir_img = cv2.medianBlur(ir_img, 5) # Aynı işlemi tekrar yapıyoruz. Plaka 5 piksel aralığında olduğu için bu işlemden çok etkilenmicektir ama kalan şeylerden daha çok arınmamızı sağlicak.
+
+    plt.title("Blurlanmış")
+    plt.imshow(ir_img, cmap="gray")
+    plt.show()
+
 
     # Yoğunluk merkezi bulma, bunun için birkaç yöntem var ortalama, medyan, tepedeğer gibi. Biz medyan kullanıcaz.
     medyan = np.median(ir_img)
@@ -145,9 +158,16 @@ def plaka_konum_don(img):
     # Canny algoritmasının çıkardığı sonuç high eşik değerinin üstünde kalırsa kenarlık kabul edilir. Üstünde kalmazsa low eşik değerine bakılır.
     # Low ile High arasında kalırsa etrafındaki piksellere bakılır ve high değerinin üstünde kalırsa kenarlık kabul edilir.
 
+    plt.title("Kenarlık tespiti")
+    plt.imshow(kenarlik, cmap="gray")
+    plt.show()
+
     # Kenarlığımız tek piksel üzerinde gittiği için bunu biraz genişletmemiz gerek.
     # np.ones((3,3), np.uint8), iterations=1) -->  integer tipinde pozitif tam sayılar olucak ve 8 bit olucak. 3e3 kenarlıklar şeklinde filtrelicek. iterations=1 ise kaç kere genişletme yapılacağı
     kenarlik = cv2.dilate(kenarlik, np.ones((3,3), np.uint8), iterations=1) 
+    plt.title("Kenarlık genişletme")
+    plt.imshow(kenarlik, cmap="gray")
+    plt.show()
 
 
     #                    **DİKDÖRTGENİ ALMA**
@@ -193,6 +213,7 @@ def plaka_konum_don(img):
             kontrol = False
             if(kontrol1 and (kontrol2 or kontrol3)):
                 #plakadır
+
                 cv2.drawContours(img, [box], 0, (0,255,0), 2)
                 # img değişkenimizin çizdireceğimiz contourlarını belirttik(box). Sonrasında contourların köşegenlerden çizileceğini belirtmek için 0 değerini giriyoruz.
                 # sonrasında bgr renk değerlerimizi giriyoruz. çizdirdiğimiz kısmın yeşil olmasını istediğimiz için yeşil kısmı 255 olarak ayarladık. Son adımda ise pixel kalınlığı yazıyoruz.
@@ -202,9 +223,10 @@ def plaka_konum_don(img):
                 kontrol = True
             else:
                 #plaka değildir
-                # cv2.drawContours(img, [box], 0, (0,0,255), 0)
-                continue
-
+                cv2.drawContours(img, [box], 0, (0,0,255), 0)
+            plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+            plt.show()
             if(kontrol):
+                plt.title("Plaka bulundu!!")
                 return plaka
     return []
